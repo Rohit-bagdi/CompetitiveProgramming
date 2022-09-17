@@ -1,0 +1,73 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+     public ListNode addToTheLast(ListNode node,ListNode List) 
+	  {
+	      if (List == null)
+	      {
+	    	  List = node;
+	      }
+	      else 
+	      {
+	          ListNode temp = List;
+	          while (temp.next != null)
+	              temp = temp.next;
+	          temp.next = node;
+	      }
+	      return List;
+	  }
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode List = null;
+        if(list1==null)
+        {
+            return list2;
+        }
+	     else if(list2==null)
+         {
+             return list1;
+         }
+        else{
+             while(list1!=null||list2!=null)
+	        {
+	            if(Objects.nonNull(list1)&&Objects.nonNull(list1.val)&&Objects.nonNull(list2)&&Objects.nonNull(list2.val)&&list1.val<list2.val)
+	            {
+	            	
+	                ListNode node = new ListNode(list1.val);
+	               List= addToTheLast(node, List);
+	                list1 = list1.next;
+	            }
+	            else if(Objects.nonNull(list1)&&Objects.nonNull(list1.val)&&Objects.nonNull(list2)&&Objects.nonNull(list2.val)&&list1.val==list2.val){
+	            	 
+	                ListNode node1= new ListNode(list1.val);
+	               List = addToTheLast(node1, List);
+	                ListNode node2= new ListNode(list2.val);   
+	               List = addToTheLast(node2, List);
+	                list1= list1.next;
+	                list2= list2.next;
+	            }
+	            else{
+                    if(Objects.nonNull(list2)&&Objects.nonNull(list2.val))
+                    {
+	                ListNode node= new ListNode(list2.val);  
+	               List = addToTheLast(node, List);
+	                list2 = list2.next;
+                    }
+                    else{
+                         ListNode node= new ListNode(list1.val);  
+                         List = addToTheLast(node, List);
+                        list1 = list1.next;
+                    }
+	            }
+	        }
+	        return List;
+        }  
+	    }
+}
